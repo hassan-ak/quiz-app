@@ -71,6 +71,11 @@ h3{
     text-align: center;
 }
 
+/* Score Component */
+h2{
+    text-align: center;
+}
+
 /* Media Queries */
 @media(max-width: 700px){
     .startQuizContainer{

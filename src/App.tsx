@@ -5,6 +5,7 @@ import React from 'react';
 import { Header } from './components/Header';
 import { StartQuiz } from './components/StartQuiz';
 import { Loading } from './components/Loading';
+import { Score } from './components/Score';
 // Styles Imports
 import './App.css';
 
@@ -15,6 +16,7 @@ function App() {
       <Header/>
       <StartQuiz/>
       <Loading/>
+      <Score/>
     </div>
   );
 }
