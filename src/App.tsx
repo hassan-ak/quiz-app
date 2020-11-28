@@ -3,6 +3,7 @@
 import React from 'react';
 // Components Imports
 import { Header } from './components/Header';
+import { StartQuiz } from './components/StartQuiz';
 // Styles Imports
 import './App.css';
 
@@ -11,6 +12,7 @@ function App() {
   return (
     <div className="container">
       <Header/>
+      <StartQuiz/>
     </div>
   );
 }

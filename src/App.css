@@ -29,3 +29,41 @@ body{
 h1{
     text-align: center;
 }
+
+/* Start Quiz Component */
+.startQuizContainer{
+    width: 600px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+    margin-top: 10px;
+}
+.startQuizContainer >div{
+    margin-bottom: 20px;
+}
+.startQuizContainer >div:last-of-type{
+    margin-bottom: 0px;
+}
+.formControl{
+    width: 350px;
+}
+
+/* Media Queries */
+@media(max-width: 700px){
+    .startQuizContainer{
+        width: 450px;
+    }
+}
+@media(max-width: 500px){
+    .startQuizContainer{
+        width: 300px;
+    }
+    .formControl{
+        width: 250px;
+    }
+}
