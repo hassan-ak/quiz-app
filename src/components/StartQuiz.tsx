@@ -7,6 +7,7 @@ import { Button, FormControl, InputLabel, Select } from '@material-ui/core';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 // Functional Component Imports
 import ApiURLContext from '../functionalComponent/ApiUrlContext';
+import { fetchQuestions } from '../functionalComponent/ApiUtilization';
 // Styles import
 import '../App.css';
 
@@ -53,6 +54,13 @@ type Props = {
     recieveNumberOfQuestions: any;
     recieveCategory: any;
     recieveDifficulty: any;
+    recieveCheckLoading: any;
+    recieveCheckGameOver: any;
+    recieveCheckQuestions: any;
+    recieveCheckScore : any;
+    recieveCheckUserAnswers: any;
+    recieveCheckNumber: any;
+    
   }
 // useStyles for stying material UI components
 const useStyles = makeStyles((theme) => ({
@@ -66,12 +74,30 @@ export const StartQuiz : React.FC<Props> = ({
                                                 recieveNumberOfQuestions, 
                                                 recieveCategory,
                                                 recieveDifficulty,
+                                                recieveCheckLoading,
+                                                recieveCheckGameOver,
+                                                recieveCheckQuestions,
+                                                recieveCheckScore,
+                                                recieveCheckUserAnswers,
+                                                recieveCheckNumber,
                                             }) => {
     // useStyles for stying material UI component
     const classes = useStyles();
     // const for useContext for apiUrl
     const context = useContext(ApiURLContext);
-    console.log(context)
+    const contextValues = Object.values(context);
+    const url:any = contextValues[0];
+    // Function to run on click of start quiz
+    const startQuiz = async() => {
+        recieveCheckLoading(true);
+        recieveCheckGameOver(false);
+        const newQuestions = await fetchQuestions(url)
+        recieveCheckQuestions(newQuestions);
+        recieveCheckScore(0);
+        recieveCheckUserAnswers([]);
+        recieveCheckNumber(0);
+        recieveCheckLoading(false);
+      };
     // Function return
     return (
         // Overall Component
@@ -121,6 +147,7 @@ export const StartQuiz : React.FC<Props> = ({
                     variant="contained"
                     className={classes.startButton}
                     endIcon={<KeyboardArrowRightIcon />}
+                    onClick={startQuiz}
                 >
                     Start Quiz
                 </Button>
