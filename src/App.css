@@ -155,6 +155,41 @@ h2{
     outline: 0;
 }
 
+/* Start Quiz Component */
+.playAgainContainer{
+    width: 600px;
+    height: 380px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+    margin-top: 10px;
+}
+.playAgainContainer >div{
+    margin-bottom: 20px;
+}
+.playAgainContainer >div:last-of-type{
+    margin-bottom: 0px;
+}
+.finalScore{
+    width: 300px;
+    height: 200px;
+    background-color: rgb(27, 23, 23);
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 0px;
+}
+
 /* Media Queries */
 @media(max-width: 700px){
     .startQuizContainer{
@@ -168,6 +203,9 @@ h2{
     }
     .answers button{
         width: 350px;
+    }
+    .playAgainContainer{
+        width: 450px;
     }
 }
 @media(max-width: 500px){
@@ -185,5 +223,11 @@ h2{
     }
     .answers button{
         width: 250px;
+    }
+    .playAgainContainer{
+        width: 300px;
+    }
+    .finalScore{
+        width: 200px;
     }
 }

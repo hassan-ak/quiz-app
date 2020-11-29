@@ -9,6 +9,7 @@ import { Score } from './components/Score';
 import { QuestionsCard } from './components/QuestionsCard';
 import { Next } from './components/Next';
 import { EndGame } from './components/EndGame';
+import { PlayAgain } from './components/PlayAgain';
 // Styles Imports
 import './App.css';
 
@@ -23,6 +24,7 @@ function App() {
       <QuestionsCard/>
       <Next/>
       <EndGame/>
+      <PlayAgain/>
     </div>
   );
 }
