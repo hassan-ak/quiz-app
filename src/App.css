@@ -76,6 +76,37 @@ h2{
     text-align: center;
 }
 
+/* Question Card Component */
+.cardContainer{
+    width: 600px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.question{
+    font-size: large;
+    padding: 10px;
+}
+.answers button{
+    width: 500px;
+    padding: 10px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
+.answers :hover{
+    cursor: pointer;
+}
+.answers button span{
+    font-size: medium;
+}
+.answers :focus{
+    outline: 0;
+}
+
 /* Media Queries */
 @media(max-width: 700px){
     .startQuizContainer{
@@ -83,6 +114,12 @@ h2{
     }
     .loadingContainer{
         width: 450px;
+    }
+    .cardContainer{
+        width: 450px;
+    }
+    .answers button{
+        width: 350px;
     }
 }
 @media(max-width: 500px){
@@ -94,5 +131,11 @@ h2{
     }
     .loadingContainer{
         width: 300px;
+    }
+    .cardContainer{
+        width: 300px;
+    }
+    .answers button{
+        width: 250px;
     }
 }
