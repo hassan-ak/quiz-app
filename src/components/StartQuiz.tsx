@@ -1,10 +1,12 @@
 // Imports
 // React Imports
-import React from 'react';
+import React, { useContext } from 'react';
 // Material UI Imports
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, FormControl, InputLabel, Select } from '@material-ui/core';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+// Functional Component Imports
+import ApiURLContext from '../functionalComponent/ApiUrlContext';
 // Styles import
 import '../App.css';
 
@@ -46,6 +48,12 @@ const difficulty = [
   { value: "medium", label: 'Medium',},
   { value: "hard", label: 'Hard',},
 ];
+// Define data type props
+type Props = {
+    recieveNumberOfQuestions: any;
+    recieveCategory: any;
+    recieveDifficulty: any;
+  }
 // useStyles for stying material UI components
 const useStyles = makeStyles((theme) => ({
   startButton: {
@@ -54,9 +62,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // StartQuiz component Function
-export const StartQuiz = () => {
+export const StartQuiz : React.FC<Props> = ({ 
+                                                recieveNumberOfQuestions, 
+                                                recieveCategory,
+                                                recieveDifficulty,
+                                            }) => {
     // useStyles for stying material UI component
     const classes = useStyles();
+    // const for useContext for apiUrl
+    const context = useContext(ApiURLContext);
+    console.log(context)
     // Function return
     return (
         // Overall Component
@@ -65,7 +80,7 @@ export const StartQuiz = () => {
             <div>
                 <FormControl variant="outlined" className="formControl">
                 <InputLabel htmlFor="numberOfQuestions">Number of Questions</InputLabel>
-                <Select native label="Number of Questions">
+                <Select native label="Number of Questions" onChange={(e)=>recieveNumberOfQuestions(Number(e.target.value))}>
                     <option aria-label="None" value=""/>
                     {noOfQuestions.map((option) => (<option key={option} value={+option}>{option}</option>))}
                 </Select>
@@ -75,7 +90,7 @@ export const StartQuiz = () => {
             <div>
                 <FormControl variant="outlined" className="formControl">
                 <InputLabel htmlFor="category">Category</InputLabel>
-                <Select native label="Category">
+                <Select native label="Category" onChange={(e)=>recieveCategory(Number(e.target.value))}>
                     <option aria-label="None" value="" />
                     {category.map((option) => (<option key={option.value} value={option.value}>{option.label}</option>))}
                 </Select>
@@ -85,7 +100,7 @@ export const StartQuiz = () => {
             <div>
                 <FormControl variant="outlined" className="formControl">
                 <InputLabel htmlFor="difficulty">Difficulty</InputLabel>
-                <Select native label="Difficulty">
+                <Select native label="Difficulty" onChange={(e)=>recieveDifficulty(e.target.value)}>
                     <option aria-label="None" value="" />
                     {difficulty.map((option) => (<option key={option.value} value={option.value}>{option.label}</option>))}
                 </Select>
