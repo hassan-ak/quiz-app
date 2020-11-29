@@ -7,6 +7,7 @@ import { StartQuiz } from './components/StartQuiz';
 import { Loading } from './components/Loading';
 import { Score } from './components/Score';
 import { QuestionsCard } from './components/QuestionsCard';
+import { Next } from './components/Next';
 // Styles Imports
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
       <Loading/>
       <Score/>
       <QuestionsCard/>
+      <Next/>
     </div>
   );
 }

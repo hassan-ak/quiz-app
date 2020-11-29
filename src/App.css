@@ -107,6 +107,30 @@ h2{
     outline: 0;
 }
 
+/* Next Component */
+.next{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+.next button{
+    width: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    font-size: medium;
+}
+.next button{
+    background-image: linear-gradient(90deg, rgba(255, 255, 0, 0.664), rgb(255, 211, 15), rgba(255, 255, 0, 0.664));
+}
+.next button:hover{
+    cursor: pointer;
+}
+.next :focus{
+    outline: 0;
+}
+
 /* Media Queries */
 @media(max-width: 700px){
     .startQuizContainer{
