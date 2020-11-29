@@ -10,6 +10,7 @@ import { QuestionsCard } from './components/QuestionsCard';
 import { Next } from './components/Next';
 import { EndGame } from './components/EndGame';
 import { PlayAgain } from './components/PlayAgain';
+import Footer from './components/Footer';
 // Styles Imports
 import './App.css';
 
@@ -25,6 +26,7 @@ function App() {
       <Next/>
       <EndGame/>
       <PlayAgain/>
+      <Footer/>
     </div>
   );
 }
