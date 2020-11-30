@@ -84,6 +84,10 @@ function App() {
       setUserAnswers(prev => [...prev, answerObject])
     }
   };
+  // for setting next question number
+  const nextQuestion = async() => {
+    setNumber(number + 1);
+  };
   // return of App
   return (
     <div className="container">
@@ -119,7 +123,9 @@ function App() {
             callback={checkAnswer}
           />
         ) : null }
-        <Next/>
+        {!gameOver && !loading && userAnswers.length === number + 1 && number !== selectedNumberOfQuestions - 1 ? (
+          <Next callback={nextQuestion}/>
+        ): null }
         <EndGame/>
         <PlayAgain/>
         <Footer/>
