@@ -40,6 +40,8 @@ function App() {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   // for next question number
   const [number, setNumber] = useState(0);
+  // for ending game
+  const [endGame, setEndGame] = useState(false);
   // Function Definations
   // Functions to define functions for recieving data from components
   async function numberOfQuestions(value:number) {
@@ -88,6 +90,10 @@ function App() {
   const nextQuestion = async() => {
     setNumber(number + 1);
   };
+  // For ending the game
+  const checkEndGame = async()=>{
+    setEndGame(true);
+  }
   // return of App
   return (
     <div className="container">
@@ -112,7 +118,7 @@ function App() {
         ): null }
         {loading ? (<Loading/>) : null }
         {!gameOver && !loading ? (<Score setScore={score}/>) : null }
-        {!loading && !gameOver ? (
+        {!loading && !gameOver && !endGame? (
           <QuestionsCard
             questionNum={number + 1}
             totalQuestions={selectedNumberOfQuestions}
@@ -126,8 +132,12 @@ function App() {
         {!gameOver && !loading && userAnswers.length === number + 1 && number !== selectedNumberOfQuestions - 1 ? (
           <Next callback={nextQuestion}/>
         ): null }
-        <EndGame/>
-        <PlayAgain/>
+        { userAnswers.length === number + 1 && number === selectedNumberOfQuestions - 1 && !gameOver && !loading &&!endGame?  (
+          <EndGame callback={checkEndGame}/>
+        ): null }
+        {endGame ? (
+          <PlayAgain/>
+        ) : null }
         <Footer/>
       </ApiUrlProvider>
     </div>
