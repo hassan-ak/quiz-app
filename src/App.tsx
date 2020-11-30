@@ -94,6 +94,11 @@ function App() {
   const checkEndGame = async()=>{
     setEndGame(true);
   }
+  // for playing again
+  const playagin = async()=>{
+    setGameOver(true);
+    setEndGame(false);
+  }
   // return of App
   return (
     <div className="container">
@@ -117,7 +122,7 @@ function App() {
           />
         ): null }
         {loading ? (<Loading/>) : null }
-        {!gameOver && !loading ? (<Score setScore={score}/>) : null }
+        {!gameOver && !loading && !endGame? (<Score setScore={score}/>) : null }
         {!loading && !gameOver && !endGame? (
           <QuestionsCard
             questionNum={number + 1}
@@ -136,7 +141,11 @@ function App() {
           <EndGame callback={checkEndGame}/>
         ): null }
         {endGame ? (
-          <PlayAgain/>
+          <PlayAgain
+            callback={playagin}
+            setScore={score}
+            totalQuestions={selectedNumberOfQuestions}
+          />
         ) : null }
         <Footer/>
       </ApiUrlProvider>

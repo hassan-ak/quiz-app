@@ -36,8 +36,8 @@ export const QuestionsCard: React.FC<Props> = ({    questionNum,
                     Question: {questionNum} / {totalQuestions}
                 </strong>
             </p>
-            {/* Display Question Number */}
-            <p className="question">{question}</p>
+            {/* Display Question and category */}
+            <p dangerouslySetInnerHTML={{ __html: question}} className="question"/>
             <p className="category">{category}</p>
             {/* Div to map over answers and diaply them in the app */}
             <div>
