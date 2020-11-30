@@ -91,6 +91,12 @@ h2{
 .question{
     font-size: large;
     padding: 10px;
+    margin-bottom: none;
+    padding-bottom: none;
+}
+.category{
+    margin-top: none;
+    padding-top: none;
 }
 .answers button{
     width: 500px;

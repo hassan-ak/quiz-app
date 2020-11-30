@@ -5,18 +5,27 @@ import React from 'react';
 import { ButtonWrapper } from './QuestionCard.styles';
 import '../App.css';
 
+// Props type defination
+type Props = {
+    questionNum: number;
+    totalQuestions: number;
+    question: string;
+    category : string;
+    answers: string[];
+    userAnswer: any;
+    callback: any;
+}
+
 // Question Card Function
-export const QuestionsCard = () =>{
-    // Dimy data to display
-    const questionNum = 1;
-    const totalQuestions = 10;
-    const question = 'Which city of Pakistan is known as "City of Hockey"?'
-    const answers = [
-        "Lahore",
-        "Karachi",
-        "Gojra",
-        "Larkana",
-    ]
+export const QuestionsCard: React.FC<Props> = ({    questionNum, 
+                                                    totalQuestions,
+                                                    question, 
+                                                    category,
+                                                    answers,  
+                                                    userAnswer, 
+                                                    callback,
+                                                    
+                                                }) =>{
     // Function return
     return (
         // Main div for Question Card
@@ -28,13 +37,17 @@ export const QuestionsCard = () =>{
                 </strong>
             </p>
             {/* Display Question Number */}
-            <p dangerouslySetInnerHTML={{ __html: question}} className="question"/>
+            <p className="question">{question}</p>
+            <p className="category">{category}</p>
             {/* Div to map over answers and diaply them in the app */}
             <div>
                 {answers.map((answer,i) => (
                     <div className="answers" key={i}>
-                        <ButtonWrapper>
-                            <button value={answer}>
+                        <ButtonWrapper
+                            correct = {userAnswer?.correctAnswer === answer}
+                            userClicked = { userAnswer?.answer === answer }
+                        >
+                            <button value={answer} disabled={userAnswer} onClick={callback}>
                                 <span dangerouslySetInnerHTML={{ __html: answer }} />
                             </button>
                         </ButtonWrapper>

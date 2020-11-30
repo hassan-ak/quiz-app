@@ -40,7 +40,6 @@ function App() {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   // for next question number
   const [number, setNumber] = useState(0);
-  console.log(questions)
   // Function Definations
   // Functions to define functions for recieving data from components
   async function numberOfQuestions(value:number) {
@@ -70,6 +69,22 @@ function App() {
   async function checkNumber(value:number) {
     setNumber(value)
   }
+  // for checking user answer
+  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!gameOver) {
+      const answer = e.currentTarget.value;
+      const correct = questions[number].correct_answer === answer;
+      if (correct) setScore(prev => prev + 1)
+      const answerObject = {
+        question: questions[number].question,
+        answer,
+        correct,
+        correctAnswer: questions[number].correct_answer
+      }
+      setUserAnswers(prev => [...prev, answerObject])
+    }
+  };
+  console.log(questions)
   // return of App
   return (
     <div className="container">
@@ -92,7 +107,15 @@ function App() {
         />
         <Loading/>
         <Score/>
-        <QuestionsCard/>
+        <QuestionsCard
+          questionNum={number + 1}
+          totalQuestions={selectedNumberOfQuestions}
+          question={questions[number].question}
+          category = {questions[number].category}
+          answers={questions[number].answers}
+          userAnswer={userAnswers ? userAnswers[number] : undefined }
+          callback={checkAnswer}
+        />
         <Next/>
         <EndGame/>
         <PlayAgain/>
