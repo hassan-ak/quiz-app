@@ -84,7 +84,6 @@ function App() {
       setUserAnswers(prev => [...prev, answerObject])
     }
   };
-  console.log(questions)
   // return of App
   return (
     <div className="container">
@@ -94,28 +93,32 @@ function App() {
         difficulty={selectedDifficulty}
       >
         <Header/>
-        <StartQuiz
-          recieveNumberOfQuestions={numberOfQuestions}
-          recieveCategory={category}
-          recieveDifficulty={difficulty}
-          recieveCheckLoading={checkLoading}
-          recieveCheckGameOver={checkGameOver}
-          recieveCheckQuestions={checkQuestions}
-          recieveCheckScore={checkScore}
-          recieveCheckUserAnswers={checkUserAnswers}
-          recieveCheckNumber={checkNumber}
-        />
-        <Loading/>
-        <Score/>
-        <QuestionsCard
-          questionNum={number + 1}
-          totalQuestions={selectedNumberOfQuestions}
-          question={questions[number].question}
-          category = {questions[number].category}
-          answers={questions[number].answers}
-          userAnswer={userAnswers ? userAnswers[number] : undefined }
-          callback={checkAnswer}
-        />
+        {gameOver ? (
+          <StartQuiz
+            recieveNumberOfQuestions={numberOfQuestions}
+            recieveCategory={category}
+            recieveDifficulty={difficulty}
+            recieveCheckLoading={checkLoading}
+            recieveCheckGameOver={checkGameOver}
+            recieveCheckQuestions={checkQuestions}
+            recieveCheckScore={checkScore}
+            recieveCheckUserAnswers={checkUserAnswers}
+            recieveCheckNumber={checkNumber}
+          />
+        ): null }
+        {loading ? (<Loading/>) : null }
+        {!gameOver && !loading ? (<Score setScore={score}/>) : null }
+        {!loading && !gameOver ? (
+          <QuestionsCard
+            questionNum={number + 1}
+            totalQuestions={selectedNumberOfQuestions}
+            question={questions[number].question}
+            category = {questions[number].category}
+            answers={questions[number].answers}
+            userAnswer={userAnswers ? userAnswers[number] : undefined }
+            callback={checkAnswer}
+          />
+        ) : null }
         <Next/>
         <EndGame/>
         <PlayAgain/>
